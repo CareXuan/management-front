@@ -28,7 +28,8 @@ module.exports = {
     config.resolve = {
       extensions: ['.ts', '.js', '.vue'],
       alias: {
-        '@': path.resolve(__dirname, 'src')
+        '@': path.resolve(__dirname, 'src'),
+        vue: path.resolve(__dirname, 'node_modules/vue/dist/vue.min.js')
       }
     }
 

@@ -24,7 +24,7 @@
     <Icon slot="avatar" icon="carbon:user-avatar-filled-alt" class="text-[#127B27] !text-[20px]" />
     <Icon slot="toggle" :icon="!expand ? 'ep:expand' : 'ep:fold'" class="text-[#fff] !text-[20px]" />
     <div class="flex-grow overflow-y-auto">
-      <router-view />
+      <router-tab ref="tab" class="h-full" />
     </div>
   </el-layout>
 </template>

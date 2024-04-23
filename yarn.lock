@@ -6037,11 +6037,6 @@ vary@~1.1.2:
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vue-check-update-plugin@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/vue-check-update-plugin/-/vue-check-update-plugin-1.2.0.tgz#0f4c377ac29ffd171dc6344c937ab6bb20e14e76"
-  integrity sha512-veE4bqSc7ZvMFc80/LBI70t8CXaKHyvUdmrA4u7sRNTiT8xKjPqgHzqTrp8H6tNLP94dHJEGTZEK+1PxwnIcSQ==
-
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npmjs.org/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"

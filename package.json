@@ -10,7 +10,6 @@
   "dependencies": {
     "@iamgx/el-layout": "0.0.1",
     "@iconify/vue2": "^2.1.0",
-    "@types/node": "^18.14.6",
     "axios": "^1.3.4",
     "core-js": "^3.8.3",
     "create-file-input": "^1.0.9",
@@ -27,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
+    "@types/node": "^18.14.6",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@vue/cli-plugin-babel": "~5.0.0",

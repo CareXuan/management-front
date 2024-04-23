@@ -9,8 +9,8 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     { path: '/', name: '', component: import('@/views/home/index.vue'), meta: { title: '首页' } },
-    { path: '/login', name: 'Login', component: () => import('@/views/login/index.vue'), meta: { title: '登录' } },
-    { path: '/:path(.*)', name: 'NotFound', component: () => import('@/views/404/index.vue') }
+    { path: '/login', name: 'Login', component: () => import('@/views/login/index.vue'), meta: { title: '登录' } }
+    // { path: '/:path(.*)', name: 'NotFound', component: () => import('@/views/404/index.vue') }
   ]
 })
 

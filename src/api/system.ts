@@ -1,9 +1,13 @@
 import request from '@/utils/request'
 import axios from 'axios'
+import { set } from 'vue/types/umd'
 
 // 登录
 export const login = (data: any) => {
-  return request.post('/login', data)
+  // return request.post('/login', data)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({ token: Date.now() }), 1000)
+  })
 }
 
 // 验证码

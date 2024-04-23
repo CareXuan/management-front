@@ -13,6 +13,10 @@ import RouterTab from 'vue-router-tab'
 import 'vue-router-tab/dist/lib/vue-router-tab.css'
 export default {
   install(app: any) {
+    app.use(RouterTab)
+    app.use(ElementUi, { size: 'mini' })
+    app.mixin({ computed: mapGetters(Object.keys(store.getters)) })
+
     app.use(useDynamicMount(), {
       name: '$createDialog',
       extend: QuickDialog,
@@ -22,15 +26,13 @@ export default {
     })
 
     app.use(VuexPersistence, {
-      states: 'jinxiu-admin',
+      states: 'test-admin',
       update: (name: string, value: any) => store.commit('update', { name, value }),
       removeItem: (name: string) => storage.remove(name),
       getItem: (name: string) => storage.get(name),
       setItem: (name: string, value: any) => storage.set(name, value)
     })
-    app.use(RouterTab)
-    app.use(ElementUi, { size: 'mini' })
-    app.mixin({ computed: mapGetters(Object.keys(store.getters)) })
+
     app.prototype.$store = store
     app.prototype.$log = console.info
     app.prototype.$get = get

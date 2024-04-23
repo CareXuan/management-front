@@ -6056,7 +6056,15 @@ vue-loader@^17.0.0, vue-loader@^17.0.1:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
-vue-router@3:
+vue-router-tab@1.2.11:
+  version "1.2.11"
+  resolved "https://registry.npmjs.org/vue-router-tab/-/vue-router-tab-1.2.11.tgz#a677a13d7ae0a4db07103a54d8f3946967694beb"
+  integrity sha512-JHOxWoiRAv/AsMLcslURuq0OTg+xjm6RK/4Ofkp30qnS7RxY83gUJ1QhG6GYDkQzRo/9Wg9y7JlW0e0jE5XxSQ==
+  dependencies:
+    vue "^2.6.14"
+    vue-router "^3.2.0"
+
+vue-router@3, vue-router@^3.2.0:
   version "3.6.5"
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-3.6.5.tgz#95847d52b9a7e3f1361cb605c8e6441f202afad8"
   integrity sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==

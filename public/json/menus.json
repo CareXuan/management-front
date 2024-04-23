@@ -1,0 +1,56 @@
+[
+  {
+    "id": 36,
+    "uuid": "569815074899364511",
+    "title": "用户管理",
+    "path": "/users",
+    "component": "",
+    "icon": "fa-solid:beer",
+    "sort": 10,
+    "children": [
+      {
+        "id": 37,
+        "uuid": "569815074906624966",
+        "parent_id": 36,
+        "type": 100,
+        "title": "用户测试",
+        "path": "/user/test",
+        "component": "user/test.vue",
+        "icon": "fa-solid:beer",
+        "desc": "测试项目"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "uuid": "569815074625434047",
+    "title": "马甲包",
+    "path": "/ant",
+    "component": "",
+    "icon": "majesticons:heart",
+    "sort": 100,
+    "desc": "马甲包",
+    "children": [
+      {
+        "id": 2,
+        "uuid": "569815074655573475",
+        "parent_id": 1,
+        "title": "马甲包首页",
+        "path": "/ant/list",
+        "component": "ant/index.vue",
+        "icon": "majesticons:robot",
+        "sort": 100
+      },
+      {
+        "id": 3,
+        "uuid": "569815074667203976",
+        "type": 100,
+        "title": "马甲包1",
+        "path": "/ant/resource",
+        "component": "ant/resource.vue",
+        "icon": "majesticons:folder-check",
+        "sort": 100
+      }
+    ]
+  }
+]

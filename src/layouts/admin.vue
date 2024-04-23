@@ -1,7 +1,7 @@
 <template>
   <el-layout
     class="w-screen h-screen"
-    :load-menu="({ resolve }) => resolve(menus)"
+    :load-menu="loadMenuData"
     :collapse="!expand"
     :active-menu="$route.path"
     :contentClassName="(expand ? 'content-expand' : 'content-collapse') + ' flex flex-col'"
@@ -32,9 +32,21 @@
 <script>
 import { menus } from '@/router'
 import { Icon } from '@iconify/vue2'
+import { addRoutes } from '@/router'
+import storage from 'good-storage'
 import ElLayout from '@iamgx/el-layout'
+import api from '@/api'
 export default {
   components: { Icon, ElLayout },
-  data: () => ({ menus: menus.map(m => ({ ...m, title: m.meta.title, icon: m.meta.icon })) })
+  methods: {
+    loadMenuData({ resolve }) {
+      const token = storage.get('token')
+      if (!token) return resolve([])
+      api.system.menus().then(rsp => {
+        setTimeout(() => addRoutes(rsp.data), 500)
+        resolve(rsp.data)
+      })
+    }
+  }
 }
 </script>

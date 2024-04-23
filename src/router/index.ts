@@ -33,4 +33,26 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+export const addRoutes = (routes: any[]) => {
+  routes.forEach(route => {
+    router.addRoute('', {
+      path: route.path,
+      name: route.path.replace(/\//g, '_'),
+      // @ts-ignore
+      title: route.title,
+      icon: route.icon,
+      meta: {
+        refresh: true,
+        type: route.tool_key,
+        title: route.title,
+        keepAlive: true,
+        qas: route.qa_page || []
+      },
+      component: () => import(`@/views/${route.component}`)
+    })
+
+    route.children && addRoutes(route.children)
+  })
+}
+
 export default router

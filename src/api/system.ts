@@ -1,13 +1,12 @@
 import request from '@/utils/request'
-import axios from 'axios'
-import { set } from 'vue/types/umd'
+import Store from '@/store'
 
 // 登录
 export const login = (data: any) => {
-  // return request.post('/login', data)
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve({ token: Date.now() }), 1000)
-  })
+  return request.post('/auth/login', data)
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => resolve({ token: Date.now() }), 1000)
+  // })
 }
 
 // 验证码
@@ -16,6 +15,6 @@ export const captcha = () => {
 }
 
 // 菜单
-export const menus = () => {
-  return axios.get(window.location.origin + '/json/menus.json')
+export const menus = (params: any) => {
+  return request.get('/user/permission', { params: params })
 }

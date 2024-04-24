@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 Vue.use(Vuex)
 
-const defaultState = { token: null, expand: true, username: 'admin' }
+const defaultState = { token: null, expand: true, username: 'admin', userid: 0 }
 
 const store = new Vuex.Store({
   state: defaultState,

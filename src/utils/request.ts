@@ -1,6 +1,7 @@
 import axios from 'axios'
 import store from '@/store'
 import { signup } from '@/utils'
+
 const instance = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
   timeout: 100000

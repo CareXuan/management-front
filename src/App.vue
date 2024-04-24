@@ -40,6 +40,7 @@ import { Icon } from '@iconify/vue2'
 import { addRoutes } from '@/router'
 import storage from 'good-storage'
 import ElLayout from '@iamgx/el-layout'
+
 export default {
   name: 'App',
   components: { Icon, ElLayout },
@@ -47,9 +48,9 @@ export default {
     loadMenuData({ resolve }) {
       const token = storage.get('token')
       if (!token) return resolve([])
-      api.system.menus().then(rsp => {
-        setTimeout(() => addRoutes(rsp.data), 500)
-        resolve(rsp.data)
+      api.system.menus({ user_id: this.userid }).then(rsp => {
+        setTimeout(() => addRoutes(rsp), 500)
+        resolve(rsp)
       })
     },
     handleMenuClicked(menu) {

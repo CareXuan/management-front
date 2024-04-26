@@ -1,8 +1,5 @@
 // @ts-nocheck
-import Vue from 'vue'
-import router from '@/router'
 import pts from '@/utils/pts'
-import App from '@/App.vue'
 import i18n from '@/local'
 import Vue from 'vue'
 import App from '@/App.vue'

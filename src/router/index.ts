@@ -26,6 +26,7 @@ router.beforeEach((to, from, next) => {
 
 export const addRoutes = (routes: any[]) => {
   routes.forEach(route => {
+    route.title = route.label
     router.addRoute('', {
       path: route.path,
       name: route.path.replace(/\//g, '_'),

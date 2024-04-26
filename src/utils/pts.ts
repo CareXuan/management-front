@@ -11,10 +11,11 @@ import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import RouterTab from 'vue-router-tab'
 import 'vue-router-tab/dist/lib/vue-router-tab.css'
+
 export default {
   install(app: any) {
     app.use(RouterTab)
-    app.use(ElementUi, { size: 'mini' })
+    app.use(ElementUi, { size: 'medium' })
     app.mixin({ computed: mapGetters(Object.keys(store.getters)) })
 
     app.use(useDynamicMount(), {

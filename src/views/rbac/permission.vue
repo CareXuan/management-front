@@ -28,7 +28,7 @@
       <el-input placeholder="请输入图标" v-model="newChild.icon">
         <template slot="prepend">图标</template>
       </el-input>
-      <el-input placeholder="请输入排序号" v-model="newChild.sort">
+      <el-input placeholder="请输入排序号" v-model.number="newChild.sort">
         <template slot="prepend">排序</template>
       </el-input>
       <el-input placeholder="请输入描述" v-model="newChild.desc">
@@ -133,7 +133,7 @@ export default {
         label: '',
         path: '',
         icon: '',
-        sort: 0,
+        sort: 100,
         desc: '',
         component: ''
       }

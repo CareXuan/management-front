@@ -12,6 +12,14 @@ export const role_list = (params: any) => {
   return request.get('/auth/roles', { params: params })
 }
 
+export const role_add = (data: any) => {
+  return request.post('/auth/roles/add', data)
+}
+
+export const role_delete = (data: any) => {
+  return request.post('/auth/roles/delete', data)
+}
+
 export const permission_list = () => {
   return request.get('/auth/permission')
 }

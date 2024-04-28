@@ -27,6 +27,7 @@
             width="100">
             <template slot-scope="scope">
               <el-button type="text" size="small">编辑</el-button>
+              <el-button type="text" size="small" @click="deleteRole(scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -54,11 +55,12 @@
         node-key="id"
         show-checkbox
         default-expand-all
-        :expand-on-click-node="false">
+        :expand-on-click-node="false"
+        @check="handleCheckChange">
       </el-tree>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">提交</el-button>
+    <el-button type="primary" @click="addRole">提交</el-button>
   </span>
     </el-dialog>
   </div>
@@ -77,9 +79,11 @@ export default {
       permissionData: '',
       dialogVisible: false,
       newRole: {
+        id: 0,
         name: '',
         permission: []
-      }
+      },
+      childNodeMapping: {}
     }
   },
   mounted() {
@@ -87,6 +91,14 @@ export default {
     this.searchPermissionList()
   },
   methods: {
+    handleCheckChange(data, obj) {
+      this.newRole.permission = obj.checkedKeys
+      for (let i = 0; i < obj.checkedKeys.length; i++) {
+        if (!this.newRole.permission.includes(this.childNodeMapping[obj.checkedKeys[i]])) {
+          this.newRole.permission.push(this.childNodeMapping[obj.checkedKeys[i]])
+        }
+      }
+    },
     searchList() {
       api.rbac.role_list({ page: this.page, page_size: this.pageSize }).then(rsp => {
         this.tableData = rsp.data
@@ -96,16 +108,50 @@ export default {
     searchPermissionList() {
       api.rbac.permission_list().then(rsp => {
         this.permissionData = JSON.parse(JSON.stringify(rsp))
+        for (let i = 0; i < this.permissionData.length; i++) {
+          for (let j = 0; j < this.permissionData[i].children.length; j++) {
+            this.childNodeMapping[this.permissionData[i].children[j].id] = this.permissionData[i].id
+          }
+        }
       })
     },
     resetRoleData() {
-      this.newUser = {
+      this.newRole = {
+        id: 0,
         name: '',
         permission: []
       }
     },
     addRole() {
-
+      api.rbac.role_add(this.newRole).then(rsp => {
+        this.searchPermissionList()
+        this.searchList()
+        this.dialogVisible = false
+        this.resetRoleData()
+      })
+    },
+    deleteRole(row) {
+      this.$confirm('此操作将删除该角色,删除后拥有该角色的用户将无法使用, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        api.rbac.role_delete({ id: row.id }).then(rsp => {
+          this.searchPermissionList()
+          this.searchList()
+          this.dialogVisible = false
+          this.resetRoleData()
+        })
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     },
     handleClose(done) {
       this.$confirm('确认关闭？')

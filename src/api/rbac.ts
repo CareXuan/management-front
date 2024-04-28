@@ -4,12 +4,20 @@ export const user_list = (params: any) => {
   return request.get('/user/list', { params: params })
 }
 
+export const user_info = (params: any) => {
+  return request.get('/user/info', { params: params })
+}
+
 export const user_add = (data: any) => {
   return request.post('/user/add', data)
 }
 
 export const role_list = (params: any) => {
   return request.get('/auth/roles', { params: params })
+}
+
+export const role_info = (params: any) => {
+  return request.get('/auth/roles/info', { params: params })
 }
 
 export const role_add = (data: any) => {

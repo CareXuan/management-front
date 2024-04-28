@@ -26,7 +26,7 @@
             label="操作"
             width="100">
             <template slot-scope="scope">
-              <el-button type="text" size="small">编辑</el-button>
+              <el-button type="text" size="small" @click="updateRole(scope.row)">编辑</el-button>
               <el-button type="text" size="small" @click="deleteRole(scope.row)">删除</el-button>
             </template>
           </el-table-column>
@@ -43,7 +43,7 @@
       </el-pagination>
     </el-row>
     <el-dialog
-      title="添加角色"
+      :title="dialogTitle"
       :visible.sync="dialogVisible"
       width="30%"
       :before-close="handleClose">
@@ -54,11 +54,13 @@
         :data="permissionData"
         node-key="id"
         show-checkbox
+        ref="tree"
         default-expand-all
         :expand-on-click-node="false"
         @check="handleCheckChange">
       </el-tree>
       <span slot="footer" class="dialog-footer">
+        <el-button @click="handleEmpty">置空</el-button>
     <el-button @click="dialogVisible = false">取消</el-button>
     <el-button type="primary" @click="addRole">提交</el-button>
   </span>
@@ -72,6 +74,7 @@ import api from '@/api'
 export default {
   data() {
     return {
+      dialogTitle: '添加角色',
       page: 0,
       pageSize: 10,
       total: 0,
@@ -128,6 +131,29 @@ export default {
         this.searchList()
         this.dialogVisible = false
         this.resetRoleData()
+      })
+    },
+    updateRole(row) {
+      let allChildKeys = []
+      for (let i = 0; i < this.permissionData.length; i++) {
+        for (let j = 0; j < this.permissionData[i].children.length; j++) {
+          allChildKeys.push(this.permissionData[i].children[j].id)
+        }
+      }
+      api.rbac.role_info({ role_id: row.id }).then(rsp => {
+        let checkedKey = []
+        this.newRole.id = rsp.id
+        this.newRole.name = rsp.name
+        for (let m = 0; m < rsp.permission.length; m++) {
+          if (allChildKeys.includes(rsp.permission[m])) {
+            checkedKey.push(rsp.permission[m])
+          }
+        }
+        this.$nextTick(() => {
+          this.$refs.tree.setCheckedKeys(checkedKey)
+        })
+        this.dialogTitle = '修改角色'
+        this.dialogVisible = true
       })
     },
     deleteRole(row) {

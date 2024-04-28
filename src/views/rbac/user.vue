@@ -46,8 +46,7 @@
             label="操作"
             width="100">
             <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-              <el-button type="text" size="small">编辑</el-button>
+              <el-button type="text" size="small" @click="updateUser(scope.row)">编辑</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -63,7 +62,7 @@
       </el-pagination>
     </el-row>
     <el-dialog
-      title="添加用户"
+      :title="dialogTitle"
       :visible.sync="dialogVisible"
       width="30%"
       :before-close="handleClose">
@@ -99,6 +98,7 @@ import api from '@/api'
 export default {
   data() {
     return {
+      dialogTitle: '添加用户',
       userName: '',
       page: 0,
       pageSize: 10,
@@ -107,6 +107,7 @@ export default {
       roleData: [],
       dialogVisible: false,
       newUser: {
+        id: 0,
         name: '',
         password: '',
         phone: '',
@@ -132,6 +133,7 @@ export default {
     },
     resetUserData() {
       this.newUser = {
+        id: 0,
         name: '',
         password: '',
         phone: '',
@@ -143,6 +145,20 @@ export default {
         this.dialogVisible = false
         this.searchList()
         this.resetUserData()
+      })
+    },
+    updateUser(row) {
+      this.newUser.id = row.id
+      this.getUser(row.id)
+      this.dialogTitle = '修改用户'
+      this.dialogVisible = true
+    },
+    getUser(id) {
+      api.rbac.user_info({ user_id: id }).then(rsp => {
+        this.newUser.name = rsp.name
+        this.newUser.password = rsp.password
+        this.newUser.phone = rsp.phone
+        this.newUser.role_id = rsp.role.id
       })
     },
     handleClose(done) {
